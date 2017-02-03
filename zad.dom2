@@ -1,0 +1,86 @@
+import java.util.Scanner;
+import java.math.*;
+public class program 
+{
+
+private static Scanner cena;
+private static Scanner raty2;
+private static double raty;
+
+public static void main(String[] args) 
+{
+double Cena;
+double kwota;
+double jedna;
+int a=3;
+do
+{
+System.out.println("Podaj kwotę");
+
+cena = new Scanner(System.in);
+Cena = cena.nextDouble();
+do
+{
+if( Cena >= 100 && Cena <= 10000)
+{
+System.out.println("Podaj liczbę rat");
+raty2 = new Scanner(System.in);
+raty = raty2.nextDouble();
+if(raty >= 6 && raty <= 48)
+{
+System.out.println("Obliczanie rat.");
+if(raty >=6 && raty <=12)
+{
+kwota=1.025 * Cena;
+jedna=kwota/raty;
+System.out.println("kwota całej pożyczki");
+System.out.printf("%.2f%n", kwota);
+System.out.println("Kwota jednej raty" );
+System.out.printf("%.2f%n", jedna);
+a=5;
+}
+if(raty >=13 && raty <=24)
+{
+System.out.println("Obliczanie rat.");
+kwota=1.05 * Cena;
+jedna=kwota/raty;
+System.out.println("kwota całej pożyczki");
+System.out.printf("%.2f%n", kwota);
+System.out.println("Kwota jednej raty" );
+System.out.printf("%.2f%n", jedna);
+a=5;
+}
+if(raty >=25 && raty <=48)
+{
+System.out.println("Obliczanie rat.");
+kwota=1.10 * Cena;
+jedna=kwota/raty;
+System.out.println("kwota całej pożyczki");
+System.out.printf("%.2f%n", kwota);
+System.out.println("Kwota jednej raty" );
+System.out.printf("%.2f%n", jedna);
+a=5;
+}
+}
+
+else{System.out.println("Za duża lub za mała liczba rat. Przedział od 6 do 48 rat.");
+
+
+}
+}
+else{ System.out.println("Kwota za mała lub za duża. Przedział od 100zł do 10000zł");
+a=5;
+
+
+}
+
+}
+
+
+while(a<4);
+a=3;
+}
+while(Cena >=100 || Cena <=10000);
+}
+
+}
