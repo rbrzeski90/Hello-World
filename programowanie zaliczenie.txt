@@ -1,0 +1,106 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+				Random losowo = new Random(); //Tworzenie klasy Random
+		int wielkosc = losowo.nextInt(11)+10; //Zmienna przechowująca rozmiar jednego wymiaru tabel
+		int wieksza = 0, max = 0, sumaXWierszy = 0, sumaXKolumn = 0, liczbaKomorek = 0; //zmienne do przechowywania wyników obliczeń
+		double stosunek = 0.0; //zmienna do przechowywania wyników obliczeń
+		int[][] tablica1 = new int[wielkosc][wielkosc]; 
+		for (int a = 0; a<tablica1.length; a++)
+		{
+			
+     	  for (int b = 0; b<tablica1[a].length; b++)
+     		{
+     			if(a != b)
+     	
+     			{
+     				tablica1[a][b] = losowo.nextInt(201)-100; //losowanie liczb do tablicy1
+     			}
+     			
+     			else //przypisywanie wartości, wtedy gdy indeks wiersza jest równy indeksowi komórki
+     			
+     			{
+     				if(losowo.nextInt(101) <= 35) // ok. 35% szansy
+     				
+     				{
+     					tablica1[a][b] = 1;
+     				}
+     				
+     				else
+     				
+     				{
+     					tablica1[a][b] = -1;
+     				}
+     			}
+     			
+     			if(tablica1[a][b] > wieksza)//wyznaczanie liczb max.
+     			
+ 				{
+ 					wieksza = tablica1[a][b];
+ 					if(wieksza>max)
+ 					
+ 					{
+						int zmiennaTymczasowa = 0;
+						zmiennaTymczasowa = wieksza;
+						wieksza = max;
+						max = zmiennaTymczasowa;
+					}
+				}
+				
+				if( a % 2 == 0) //suma wartości z wierszy o parzystych indeksach
+				
+ 				{
+ 					sumaXWierszy += tablica1[a][b];
+ 				}
+ 				
+				if( b % 2 == 1) //suma wartości z kolumn o nieparzystych indeksach
+				
+ 				{
+ 					sumaXKolumn += tablica1[a][b];
+ 					
+ 				}
+ 				
+ 				if(tablica1[a][b] < b*a) //sumowanie ilości komórek o wartości mniejszej od iloczynu indeksów
+ 				
+ 				{
+ 					liczbaKomorek++;
+ 				}
+     		}
+		}
+		
+		boolean[][] tablica2 = new boolean[wielkosc][wielkosc];
+		int licz = 0;
+		for (int a = 0; a<tablica2.length; a++)
+		
+		{
+     		for (int b = 0; b<tablica2[a].length; b++)
+     		
+     		{
+				if(losowo.nextInt(2) == 0)
+				
+				{
+					tablica2[a][b] = false;
+				}
+				
+				else
+				
+				{
+					tablica2[a][b] = true;
+					licz += tablica1[a][b];//sumowanie elementów tablicy1, dla których wartość w tablicy2 wynosi true;
+				}
+     		}
+		}
+		stosunek = (double)sumaXWierszy/sumaXKolumn;
+		//Wyświetlanie wyników na ekran
+		System.out.format("Suma elementów dla których odpowiednia wartość w drugiej tabeli jest true wynosi %d.\n", licz);
+		System.out.format("Dwie największe liczby wynoszą: %d i %d.\n", wieksza, max);
+		System.out.format("Stosunek sumy liczb leżących w komórkach o parzystych indeksach wierszy i nieparzystych indeksach kolumn wynosi: %.3f.\n", stosunek);
+		System.out.format("Liczba komórek, o wartości mniejszej od iloczynu indeksu wiersza i kolumny tej komórki wynosi: %d.", liczbaKomorek);
+	}
+}
